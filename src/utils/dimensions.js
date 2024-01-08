@@ -15,9 +15,9 @@ const dimensions = {
   textFontSize: pixelRatioFontScale * width * 0.04,
   titleFontSize: pixelRatioFontScale * width * 0.05,
   fontWeight: '600',
-  borderRadius: 12,
-  padding: 10,
-  margin: 10,
+  borderRadius: 10,
+  padding: width * 0.03,
+  margin: width * 0.03,
 };
 
 export {dimensions, pixelRatioFontScale, pixelRatio};
