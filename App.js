@@ -1,21 +1,23 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import CocaCola from './assets/svg/cocaCola.svg';
+import {View, StyleSheet} from 'react-native';
+import {Provider} from 'react-redux';
+import {store} from './src/redux/store';
+import AppStack from './src/navigators/appStack';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 20, fontWeight: 'bold'}}>Trapezoid</Text>
+    <View style={style.root}>
+      <Provider store={store}>
+        <AppStack />
+      </Provider>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
+const style = StyleSheet.create({
+  root: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: 'white',
   },
 });
-
 export default App;
