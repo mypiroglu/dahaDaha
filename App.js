@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import CocaCola from './assets/svg/cocaCola.svg';
 
 const App = () => {
   return (
