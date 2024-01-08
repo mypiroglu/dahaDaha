@@ -3,6 +3,7 @@ import {View, StyleSheet, StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
 import AppStack from './src/navigators/appStack';
+import {colors} from './src/utils';
 
 const App = () => {
   StatusBar.setHidden(true);
@@ -18,7 +19,7 @@ const App = () => {
 const style = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
 });
 export default App;
