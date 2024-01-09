@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from '../screens';
+import {HomeScreen, DetailScreen} from '../screens';
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {colors} from '../utils';
 

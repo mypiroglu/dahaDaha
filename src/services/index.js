@@ -25,3 +25,12 @@ export const getPromotions = createAsyncThunk(
     return res.data;
   },
 );
+
+export const getPromotionDetail = createAsyncThunk(
+  'promotions?Id',
+  async data => {
+    const {id} = data;
+    const res = await instance.get(`promotions?Id=${id}`);
+    return res.data;
+  },
+);

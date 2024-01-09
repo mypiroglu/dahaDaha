@@ -1,63 +1,70 @@
-import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, View, FlatList, Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCategories, getPromotions} from '../../services';
-import {CategoryCard, Text, Header, CarouselCard} from '../../components';
+import {CategoryCard, Header, CarouselCard} from '../../components';
 import styles from './styles';
-import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/native';
 
 export const HomeScreen = () => {
-  const data = [
-    {
-      id: '1',
-      image:
-        'https://www.klasiksanatlar.com/img/sayfalar/b/1_1598452306_resim.png',
-      title: 'Item 1',
-    },
-    {
-      id: '2',
-      image:
-        'https://www.klasiksanatlar.com/img/sayfalar/b/1_1598452306_resim.png',
-      title: 'Item 2',
-    },
-    {
-      id: '3',
-      image:
-        'https://www.klasiksanatlar.com/img/sayfalar/b/1_1598452306_resim.png',
-      title: 'Item 3',
-    },
-    // Add more items as needed
-  ];
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const categories = useSelector(state => state.categories);
   const promotions = useSelector(state => state.promotions);
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getPromotions());
   }, []);
 
+  const onCategorySelect = item => {
+    setSelectedCategory(item.Id);
+  };
+  const pagination = (
+    <Pagination
+      dotsLength={promotions?.data?.length}
+      activeDotIndex={currentPage}
+      dotStyle={{
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        marginHorizontal: 1,
+        backgroundColor: 'grey',
+      }}
+      inactiveDotOpacity={0.4}
+      inactiveDotScale={0.6}
+    />
+  );
   const renderCategory = ({item}) => {
     return (
-      <CategoryCard title={item.Name} url={item.IconUrl} selected={true} />
+      <CategoryCard
+        title={item.Name}
+        url={item.IconUrl}
+        selected={item.Id === selectedCategory}
+        onPress={() => onCategorySelect(item)}
+      />
     );
   };
 
   const renderItem = ({item, index}, parallaxProps) => {
     return (
       <CarouselCard
+        onPress={() => onCardPress(item)}
         title={item.Title}
         url={item.ImageUrl}
         icon={item.BrandIconUrl}
+        promotionCardColor={item.PromotionCardColor}
+        remainingText={item.RemainingText}
       />
     );
   };
 
+  const onCardPress = item => {
+    navigation.navigate('detail-screen', {item: item});
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Header />
@@ -77,35 +84,11 @@ export const HomeScreen = () => {
         data={promotions.data}
         renderItem={renderItem}
         hasParallaxImages={true}
+        onSnapToItem={index => setCurrentPage(index)}
+        loop={true}
+        autoplay={true}
       />
+      <View style={styles.paginationContainer}>{pagination}</View>
     </SafeAreaView>
   );
 };
-const style = StyleSheet.create({
-  item: {
-    width: Dimensions.get('window').width - 60,
-    height: Dimensions.get('window').height / 2,
-    borderRadius: 8,
-    backgroundColor: 'white',
-  },
-  imageContainer: {
-    flex: 1,
-    borderRadius: 8,
-  },
-  image: {
-    ...StyleSheet.absoluteFillObject,
-    resizeMode: 'cover',
-  },
-  title: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    padding: 16,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 18,
-    borderRadius: 8,
-  },
-});

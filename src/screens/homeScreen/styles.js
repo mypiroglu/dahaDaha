@@ -5,4 +5,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  paginationContainer: {
+    position: 'absolute',
+    bottom: dimensions.width * 0.28,
+    alignSelf: 'center',
+  },
 });

@@ -2,35 +2,24 @@ import {StyleSheet} from 'react-native';
 import {colors, dimensions} from '../../utils';
 
 export default StyleSheet.create({
-  container: {
-    width: dimensions.width * 0.8,
-    height: dimensions.height * 0.55,
+  root: {
+    flex: 1,
     backgroundColor: colors.white,
-    borderRadius: 16,
-    borderColor: colors.grey,
-    borderWidth: 1.5,
-    padding: 5,
-    zIndex: 1000,
+  },
+  indicatorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
-    width: dimensions.width * 0.8 - 10,
+    width: dimensions.width,
     height: dimensions.height * 0.4,
-    borderRadius: 16,
-    borderBottomLeftRadius: 100,
+    borderBottomLeftRadius: 130,
   },
-  title: {
-    position: 'absolute',
-    bottom: 0,
-    color: colors.black,
-    fontSize: dimensions.textFontSize,
-    fontWeight: '700',
-    lineHeight: 20,
-    letterSpacing: -0.22,
-    textAlign: 'center',
-  },
+
   overlay: {
     position: 'absolute',
-    top: dimensions.height * 0.31,
+    top: dimensions.height * 0.33,
     width: dimensions.width * 0.2,
     height: dimensions.width * 0.2,
     borderRadius: dimensions.height * 0.1,
@@ -44,14 +33,32 @@ export default StyleSheet.create({
     borderRadius: dimensions.width * 0.09,
     alignSelf: 'center',
   },
-  bottomTag: {
-    width: dimensions.width * 0.8 - 1,
-    height: 40,
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
-    transform: [{rotate: '2deg'}],
+  backButton: {
     position: 'absolute',
-    bottom: -16,
+    top: dimensions.height * 0.05,
+    left: dimensions.width * 0.05,
+    width: dimensions.width * 0.1,
+    height: dimensions.width * 0.1,
+    borderRadius: dimensions.width * 0.05,
+    backgroundColor: colors.black,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 999,
+    opacity: 0.9,
+  },
+  button: {
+    position: 'absolute',
+    width: dimensions.width * 0.8,
+    height: dimensions.width * 0.15,
+    top: dimensions.height * 0.88,
+    alignSelf: 'center',
+  },
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  scrollViewContent: {
+    paddingBottom: dimensions.height * 0.1,
   },
   remainingText: {
     color: colors.white,
@@ -59,7 +66,7 @@ export default StyleSheet.create({
   },
   remainingContainer: {
     position: 'absolute',
-    top: dimensions.height * 0.35,
+    top: dimensions.height * 0.34,
     right: dimensions.width * 0.03,
     width: dimensions.width * 0.3,
     height: dimensions.height * 0.05,

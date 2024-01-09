@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTab from './bottamTab';
+import {DetailScreen} from '../screens';
 
 const AppStack = () => {
   const Stack = createStackNavigator();
@@ -14,6 +15,7 @@ const AppStack = () => {
           headerShown: false,
         }}>
         <Stack.Screen name="bottom-tab" component={BottomTab} />
+        <Stack.Screen name="detail-screen" component={DetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
