@@ -17,3 +17,11 @@ export const getCategories = createAsyncThunk('tags/list', async () => {
   const res = await instance.get('tags/list');
   return res.data;
 });
+
+export const getPromotions = createAsyncThunk(
+  'promotions/list?Channel=PWA',
+  async () => {
+    const res = await instance.get('promotions/list?Channel=PWA');
+    return res.data;
+  },
+);
