@@ -27,13 +27,7 @@ export const HomeScreen = () => {
     <Pagination
       dotsLength={promotions?.data?.length}
       activeDotIndex={currentPage}
-      dotStyle={{
-        width: 10,
-        height: 10,
-        borderRadius: 5,
-        marginHorizontal: 1,
-        backgroundColor: 'grey',
-      }}
+      dotStyle={styles.dotStyle}
       inactiveDotOpacity={0.4}
       inactiveDotScale={0.6}
     />

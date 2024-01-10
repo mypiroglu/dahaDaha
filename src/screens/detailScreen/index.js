@@ -35,20 +35,8 @@ export const DetailScreen = ({route}) => {
   }, []);
 
   const headerHtmlStyles = {
-    p: {
-      color: '#000',
-      fontSize: 18,
-      lineHeight: 20,
-      marginTop: 30,
-      fontWeight: 'bold',
-      marginHorizontal: 10,
-    },
-    span: {
-      color: '#000',
-      fontWeight: '700',
-      letterSpacing: -0.22,
-      marginHorizontal: 10,
-    },
+    p: styles.headerHtmlp,
+    span: styles.headerHtmlSpan,
   };
 
   const contentHtmlStyles = {
@@ -66,15 +54,7 @@ export const DetailScreen = ({route}) => {
       marginHorizontal: 10,
     },
   };
-  const baseFontStyle = {
-    marginHorizontal: 10,
-    color: '#000',
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight: 20,
-    letterSpacing: -0.22,
-    textAlign: 'center',
-  };
+  const baseFontStyle = styles.baseFontStyle;
   const [remainingDays, setRemainingDays] = useState(null);
 
   useEffect(() => {
@@ -171,92 +151,8 @@ export const DetailScreen = ({route}) => {
           contentWidth={dimensions.width}
           source={{html: promotionDetail?.Description}}
         />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
-        <HTML
-          allowedStyles={['p', 'span']}
-          tagsStyles={contentHtmlStyles}
-          baseFontStyle={baseFontStyle}
-          contentWidth={dimensions.width}
-          source={{html: promotionDetail?.Description}}
-        />
       </ScrollView>
-      <Button style={styles.button} title={'Hemen Katıl'} />
+      <Button style={styles.button} title={promotionDetail?.DetailButtonText} />
     </SafeAreaView>
   );
 };

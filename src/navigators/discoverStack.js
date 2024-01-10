@@ -1,13 +1,13 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from '../screens';
+import {DiscoverScreen} from '../screens';
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {colors} from '../utils';
 
 const Stack = createNativeStackNavigator();
 
-const HomeStack = () => {
+const DiscoverStack = () => {
   return (
     <SafeAreaView style={style.root}>
       <Stack.Navigator
@@ -16,7 +16,7 @@ const HomeStack = () => {
           cardStyleInterpolator:
             CardStyleInterpolators.forFadeFromBottomAndroid,
         }}>
-        <Stack.Screen name="home-screen" component={HomeScreen} />
+        <Stack.Screen name="discover-screen" component={DiscoverScreen} />
       </Stack.Navigator>
     </SafeAreaView>
   );
@@ -28,4 +28,4 @@ const style = StyleSheet.create({
     backgroundColor: colors.white,
   },
 });
-export default HomeStack;
+export default DiscoverStack;

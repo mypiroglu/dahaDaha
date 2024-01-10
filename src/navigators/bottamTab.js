@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, Pressable} from 'react-native';
+import {View, StyleSheet, Pressable, Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from './homeStack';
+import DiscoverStack from './discoverStack';
+import WalletStack from './walletStack';
 import {colors} from '../utils';
 import Portal from '../../assets/svg/portal.svg';
 import Svg, {Path} from 'react-native-svg';
@@ -21,8 +23,8 @@ const BottomTab = () => {
         }}>
         <View
           style={{
-            width: 90,
-            height: 100,
+            width: Platform.OS === 'ios' ? 90 : 70,
+            height: Platform.OS === 'ios' ? 90 : 70,
             borderRadius: 30,
             backgroundColor: colors.grey,
           }}>
@@ -33,6 +35,7 @@ const BottomTab = () => {
   };
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={{
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: colors.black,
@@ -46,7 +49,7 @@ const BottomTab = () => {
       }}>
       <Tab.Screen
         name="KEŞFET"
-        component={HomeStack}
+        component={DiscoverStack}
         options={{
           tabBarIcon: ({focused}) => (
             <DiscoverIcon color={focused ? colors.black : colors.darkGrey} />
@@ -54,10 +57,10 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Home2"
+        name="Home"
         component={HomeStack}
         options={{
-          tabBarIcon: () => <Portal />,
+          tabBarIcon: () => <Portal width={Platform.OS === 'ios' ? 100 : 80} />,
           tabBarButton: props => <CustomTabBarButton {...props} />,
           tabBarBackgroundColor: 'transparent',
           tabBarLabel: () => null,
@@ -65,7 +68,7 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="DAHA CÜZDAN"
-        component={HomeStack}
+        component={WalletStack}
         options={{
           tabBarIcon: ({focused}) => (
             <StarIcon color={focused ? colors.black : colors.darkGrey} />
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.grey,
     borderWidth: 2,
-    height: 100,
+    height: Platform.OS === 'ios' ? 100 : 70,
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,
     borderTopWidth: 2,

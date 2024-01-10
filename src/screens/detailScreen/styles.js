@@ -76,4 +76,27 @@ export default StyleSheet.create({
     backgroundColor: colors.black,
     zIndex: 100,
   },
+  headerHtmlp: {
+    color: colors.black,
+    fontSize: 18,
+    lineHeight: 20,
+    marginTop: 30,
+    fontWeight: 'bold',
+    marginHorizontal: 10,
+  },
+  headerHtmlSpan: {
+    color: colors.black,
+    fontWeight: '700',
+    letterSpacing: -0.22,
+    marginHorizontal: 10,
+  },
+  baseFontStyle: {
+    marginHorizontal: 10,
+    color: colors.black,
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 20,
+    letterSpacing: -0.22,
+    textAlign: 'center',
+  },
 });
