@@ -34,3 +34,12 @@ export const getPromotionDetail = createAsyncThunk(
     return res.data;
   },
 );
+
+export const getFilteredPromotion = createAsyncThunk(
+  'promotions/list?Channel=PWA&TagId',
+  async data => {
+    const {id} = data;
+    const res = await instance.get(`promotions/list?Channel=PWA&TagId=${id}`);
+    return res.data;
+  },
+);

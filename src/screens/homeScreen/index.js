@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, View, FlatList, Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCategories, getPromotions} from '../../services';
+import {
+  getCategories,
+  getPromotions,
+  getFilteredPromotion,
+} from '../../services';
 import {CategoryCard, Header, CarouselCard} from '../../components';
 import styles from './styles';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -12,6 +16,7 @@ export const HomeScreen = () => {
   const navigation = useNavigation();
   const categories = useSelector(state => state.categories);
   const promotions = useSelector(state => state.promotions);
+  const filteredPromotion = useSelector(state => state.filteredPromotion);
   const [selectedCategory, setSelectedCategory] = useState();
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -22,10 +27,15 @@ export const HomeScreen = () => {
 
   const onCategorySelect = item => {
     setSelectedCategory(item.Id);
+    dispatch(getFilteredPromotion({id: item.Id}));
   };
   const pagination = (
     <Pagination
-      dotsLength={promotions?.data?.length}
+      dotsLength={
+        filteredPromotion?.data
+          ? filteredPromotion?.data?.length
+          : promotions?.data?.length
+      }
       activeDotIndex={currentPage}
       dotStyle={styles.dotStyle}
       inactiveDotOpacity={0.4}
@@ -75,7 +85,7 @@ export const HomeScreen = () => {
         sliderWidth={Dimensions.get('window').width}
         sliderHeight={Dimensions.get('window').height}
         itemWidth={Dimensions.get('window').width * 0.8}
-        data={promotions.data}
+        data={filteredPromotion.data ? filteredPromotion.data : promotions.data}
         renderItem={renderItem}
         hasParallaxImages={true}
         onSnapToItem={index => setCurrentPage(index)}
